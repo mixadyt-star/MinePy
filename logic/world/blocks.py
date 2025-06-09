@@ -1,7 +1,10 @@
 import json
 import math
+import os
 
-blocks = json.load(open("static/blocks.minepy"))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(os.path.dirname(os.path.dirname(current_dir)), "static\\blocks.minepy")
+blocks = json.load(open(file_path))
 
 bits_per_block = 0
 for identifier, block in blocks.items():

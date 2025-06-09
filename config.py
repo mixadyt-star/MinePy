@@ -1,4 +1,4 @@
-from static.difficulties import *
+from .static import *
 
 VERBOSITY_LEVEL = 2 # 0, 1, or 2
 

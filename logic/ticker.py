@@ -1,6 +1,7 @@
-from storing.cache import Cache
 from asyncio import sleep
 import time
+
+from ..storing import *
 
 cache: Cache = None
 

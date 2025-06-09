@@ -1,5 +1,5 @@
-from logic.world.blocks import get_block, Block
-import config
+from .... import config
+from ..blocks import *
 
 async def gen_block(x: int, y: int, z: int) -> Block:
     if (y < config.SEA_LEVEL):

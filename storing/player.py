@@ -1,6 +1,6 @@
-from static.dimensions import *
-from static.gamemodes import *
-import config
+from ..static import *
+from ..static import *
+from .. import config
 
 class Player:
     def __init__(self, username: str, uuid: str):

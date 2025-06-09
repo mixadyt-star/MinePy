@@ -1,8 +1,4 @@
-from common_types.unsigned_byte import UnsignedByte
-from common_types.boolean import Boolean
-from common_types.varint import VarInt
-from common_types.string import String
-from common_types.byte import Byte
+from ....common_types import *
 
 class _ClientSettings:
     def __init__(self,

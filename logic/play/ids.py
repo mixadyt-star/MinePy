@@ -1,4 +1,4 @@
-from storing.cache import Cache
+from ...storing import *
 
 async def generate_eid(cache: Cache):
     o = cache.eid

@@ -1,7 +1,7 @@
 import zlib
 
-from common_types.varint import VarInt
-import config
+from ...common_types import *
+from ... import config
 
 class Packet:
     @staticmethod

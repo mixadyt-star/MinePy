@@ -1,14 +1,8 @@
 from typing import List
 
-from logic.world.generation.gen_block_overworld import gen_block
-from logic.world.generation.gen_biome_overworld import gen_biome
-from logic.world.blocks import Block, bits_per_block
-from common_types.unsigned_byte import UnsignedByte
-from common_types.integer import Integer
-from common_types.boolean import Boolean
-from common_types.varint import VarInt
-from common_types.long import Long
-from common_types.byte import Byte
+from ...common_types import *
+from .generation  import *
+from .blocks import *
 
 class _ChunkSection:
     def __init__(self, data: List[Block], is_empty: bool):

@@ -1,4 +1,4 @@
-from common_types.string import String
+from ....common_types import *
 
 class _LoginStart:
     def __init__(self, username: str):

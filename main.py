@@ -1,14 +1,12 @@
-import config
-from logger import *
+from .logger import *
+from . import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 import asyncio
 
-from storing.cache import load, store
-from networking import sock
-import logic.keep_aliver
-import logic.ticker
-import logic.logic
+from .logic import ticker, keep_aliver, logic
+from .storing import load, store
+from .networking import sock
 
 async def _main():
     await asyncio.gather(
@@ -20,9 +18,9 @@ async def _main():
 
 def main():
     cache = load()
-    logic.logic.cache = cache
-    logic.ticker.cache = cache
-    logic.keep_aliver.cache = cache
+    logic.cache = cache
+    ticker.cache = cache
+    keep_aliver.cache = cache
     try:
         asyncio.run(_main())
     except KeyboardInterrupt:

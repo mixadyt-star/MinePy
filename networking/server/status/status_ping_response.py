@@ -1,6 +1,5 @@
-from networking.server.packet import Packet
-from common_types.varint import VarInt
-from common_types.long import Long
+from ....common_types import *
+from ..packet import Packet
 
 class StatusPingResponse:
     @staticmethod

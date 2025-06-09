@@ -1,4 +1,4 @@
-from common_types.long import Long
+from ....common_types import *
 
 class _StatusPingRequest:
     def __init__(self, payload: int):

@@ -1,25 +1,13 @@
-import config
-from logger import *
+from ...logger import *
+from ... import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 import asyncio
 
-from networking.server.play.player_pos_and_look import PlayerPosAndLook
-from networking.server.play.server_difficulty import ServerDifficulty
-from networking.server.play.player_abilities import PlayerAbilities
-from networking.server.play.held_item_change import HeldItemChange
-from networking.server.play.unlock_recipies import UnlockRecepies
-from networking.server.play.player_list_add import PlayerListAdd
-from networking.server.play.spawn_position import SpawnPosition
-from networking.server.play.entity_status import EntityStatus
-from networking.server.play.time_update import TimeUpdate
-from networking.server.play.join_game import JoinGame
-from storing.player import Player
-from storing.remote import Remote
-from storing.cache import Cache
-from static import entity_statuses
-from static.abilities import *
-from logic.play import ids
+from ...networking.server import *
+from ...storing import *
+from ...static import *
+from ..play import ids
 
 async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     player: Player = cache.players[remote.username]
@@ -74,7 +62,7 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
 
     entity_status_setting = await EntityStatus.create(
         player.eid,
-        entity_statuses.PLAYER_SET_OP_LEVEL0,
+        PLAYER_SET_OP_LEVEL0,
     )
     log(f"EntityStatus: {entity_status_setting}", 2)
     writer.write(entity_status_setting)

@@ -1,8 +1,5 @@
-from networking.server.packet import Packet
-from common_types.double import Double
-from common_types.varint import VarInt
-from common_types.float import Float
-from common_types.byte import Byte
+from ....common_types import *
+from ..packet import Packet
 
 class PlayerPosAndLook:
     @staticmethod

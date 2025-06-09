@@ -1,4 +1,4 @@
-from static.states import *
+from ..static import *
 
 class Remote:
     def __init__(self, address: str, port: int):

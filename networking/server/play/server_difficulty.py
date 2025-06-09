@@ -1,6 +1,5 @@
-from networking.server.packet import Packet
-from common_types.unsigned_byte import UnsignedByte
-from common_types.varint import VarInt
+from ....common_types import *
+from ..packet import Packet
 
 class ServerDifficulty:
     @staticmethod

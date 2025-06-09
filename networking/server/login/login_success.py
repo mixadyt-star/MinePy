@@ -1,6 +1,5 @@
-from networking.server.packet import Packet
-from common_types.varint import VarInt
-from common_types.string import String
+from ....common_types import *
+from ..packet import Packet
 
 class LoginSuccess:
     @staticmethod

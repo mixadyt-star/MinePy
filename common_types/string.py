@@ -1,4 +1,4 @@
-from common_types.varint import VarInt
+from .varint import VarInt
 
 class String:
     @staticmethod

@@ -1,4 +1,4 @@
-from common_types.byte import Byte
+from .byte import Byte
 
 class Angle:
     @staticmethod

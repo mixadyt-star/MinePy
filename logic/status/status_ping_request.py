@@ -1,13 +1,12 @@
-import config
-from logger import *
+from ...logger import *
+from ... import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 import asyncio
 
-from networking.server.status.status_ping_response import StatusPingResponse
-from networking.client.status.status_ping_request import StatusPingRequest
-from storing.remote import Remote
-from storing.cache import Cache
+from ...networking.server import *
+from ...networking.client import *
+from ...storing import *
 
 async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     client_packet = await StatusPingRequest.create(data)

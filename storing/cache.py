@@ -3,8 +3,8 @@ import asyncio
 import pickle
 import os
 
-from storing.remote import Remote
-from storing.player import Player
+from .remote import Remote
+from .player import Player
 
 class StreamWriter:
     def __init__(self, writer: asyncio.StreamWriter):
@@ -27,7 +27,9 @@ class Cache:
         self.players: Dict[str, Player] = {}
 
 def load() -> Cache:
-    return pickle.load(open("cache.minepy", "rb")) if os.path.exists("cache.minepy") else Cache()
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(os.path.dirname(current_dir), "cache.minepy")
+    return pickle.load(open(file_path, "rb")) if os.path.exists(file_path) else Cache()
 
 def store(cache: Cache):
     cache.online = 0
@@ -37,4 +39,6 @@ def store(cache: Cache):
     for _, player in cache.players.items():
         player.online = False
     
-    pickle.dump(cache, open("cache.minepy", "wb"), pickle.HIGHEST_PROTOCOL)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(os.path.dirname(current_dir), "cache.minepy")
+    pickle.dump(cache, open(file_path, "wb"), pickle.HIGHEST_PROTOCOL)

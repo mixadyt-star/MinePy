@@ -1,13 +1,13 @@
-import config
-from logger import *
+from ..logger import *
+from .. import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 from asyncio import sleep
 import random
 import time
 
-from networking.server.play.keep_alive import KeepAlive
-from storing.cache import Cache
+from ..networking.server import *
+from ..storing import *
 
 cache: Cache = None
 

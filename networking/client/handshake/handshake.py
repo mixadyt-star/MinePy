@@ -1,6 +1,4 @@
-from common_types.unsigned_short import UnsignedShort
-from common_types.string import String
-from common_types.varint import VarInt
+from ....common_types import *
 
 class _Handshake:
     def __init__(self, version: int, address: str, port: int, intent: int):

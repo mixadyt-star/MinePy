@@ -1,13 +1,11 @@
-import config
-from logger import *
+from ...logger import *
+from ... import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 import asyncio
 
-from networking.client.play.client_settings import ClientSettings
-from storing.player import Player
-from storing.remote import Remote
-from storing.cache import Cache
+from ...networking.client import *
+from ...storing import *
 
 async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     client_packet = await ClientSettings.create(data)

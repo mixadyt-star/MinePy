@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from common_types.long import Long
+from .long import Long
 
 class Position:
     @staticmethod

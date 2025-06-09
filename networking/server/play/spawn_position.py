@@ -1,8 +1,7 @@
 from typing import Tuple
 
-from networking.server.packet import Packet
-from common_types.position import Position
-from common_types.varint import VarInt
+from ....common_types import *
+from ..packet import Packet
 
 class SpawnPosition:
     @staticmethod

@@ -1,12 +1,7 @@
 from typing import List, Tuple
 
-from networking.server.packet import Packet
-from common_types.unsigned_byte import UnsignedByte
-from common_types.integer import Integer
-from common_types.boolean import Boolean
-from common_types.varint import VarInt
-from common_types.string import String
-from common_types.uuid import UUID
+from ....common_types import *
+from ..packet import Packet
 
 class PlayerListAdd:
     @staticmethod

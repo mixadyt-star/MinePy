@@ -1,23 +1,15 @@
-import config
-from logger import *
+from ..logger import *
+from .. import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
 import asyncio
 import zlib
 
-from custom_exceptions import PlayerAlreadyOnline
-from logic.status import status_ping_request
-from logic.status import status_request
-from logic.play import teleport_confirm
-from logic.play import client_settings
-from logic.play import send_world
-from logic.handshake import handshake
-from logic.play import setting_player
-from logic.login import login_start
-from common_types.varint import VarInt
-from storing.remote import Remote
-from storing.cache import Cache, StreamWriter
-from static.states import *
+from ..custom_exceptions import *
+from ..common_types import *
+from ..storing import *
+from ..static import *
+from . import *
 
 cache: Cache = None
 
@@ -57,7 +49,7 @@ async def new_session(reader: asyncio.StreamReader, writer: asyncio.StreamWriter
 
             if (cache.remote[remote] == HANDSHAKING):
                 if (id == 0x0):
-                    await handshake.process(data, writer, cache, remote)
+                    await handshake.process(data, cache, remote)
 
             elif (cache.remote[remote] == STATUS):
                 if (id == 0x0):

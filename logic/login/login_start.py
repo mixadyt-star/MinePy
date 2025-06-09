@@ -1,30 +1,23 @@
-import config
-from logger import *
+from ...logger import *
+from ... import config
 set_verbosity_level(config.VERBOSITY_LEVEL)
 
+from uuid import uuid3, NAMESPACE_X500
 import asyncio
 import time
-import uuid
 
-from networking.server.login.enable_compression import EnableCompression
-from networking.server.login.login_success import LoginSuccess
-from networking.server.login.disconnect import Disconnect
-from networking.client.login.login_start import LoginStart
-from custom_exceptions import PlayerAlreadyOnline
-from storing.player import Player
-from storing.remote import Remote
-from storing.cache import Cache, StreamWriter
-from static.entity_statuses import *
-from static.gamemodes import *
-from static.abilities import *
-from static.states import *
+from ...networking.server import *
+from ...networking.client import *
+from ...custom_exceptions import *
+from ...storing import *
+from ...static import *
 
 async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     client_packet = await LoginStart.create(data)
     show_self(client_packet, 2)
     remote.username = client_packet.username
     cache.players[remote.username] = cache.players.get(
-        remote.username, Player(remote.username, str(uuid.uuid3(uuid.NAMESPACE_X500, remote.username)))
+        remote.username, Player(remote.username, str(uuid3(NAMESPACE_X500, remote.username)))
     )
 
     if (cache.players[remote.username].online):

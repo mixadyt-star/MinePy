@@ -1,4 +1,4 @@
-from common_types.varint import VarInt
+from ....common_types import *
 
 class _TeleportConfirm:
     def __init__(self, tp_id: int):
