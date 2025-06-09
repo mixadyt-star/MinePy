@@ -1,0 +1,3 @@
+NETHER = -1
+OVERWORLD = 0x0
+END = 0x1

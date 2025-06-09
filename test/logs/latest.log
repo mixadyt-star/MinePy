@@ -1,0 +1,22 @@
+[10:53:53] [Server thread/INFO]: Loading properties
+[10:53:53] [Server thread/INFO]: Default game type: SURVIVAL
+[10:53:53] [Server thread/INFO]: Generating keypair
+[10:53:53] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:666
+[10:53:53] [Server thread/INFO]: Using default channel type
+[10:53:54] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[10:53:54] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[10:53:54] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[10:53:54] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[10:53:54] [Server thread/INFO]: Preparing level "world"
+[10:53:55] [Server thread/INFO]: Loaded 488 advancements
+[10:53:55] [Server thread/INFO]: Preparing start region for level 0
+[10:53:56] [Server thread/INFO]: Preparing spawn area: 7%
+[10:53:57] [Server thread/INFO]: Preparing spawn area: 56%
+[10:53:57] [Server thread/INFO]: Done (3,432s)! For help, type "help" or "?"
+[10:59:39] [Server thread/INFO]: sp33chp0s3r[/127.0.0.1:56610] logged in with entity id 351 at (186.5, 70.0, 259.5)
+[10:59:39] [Server thread/INFO]: sp33chp0s3r joined the game
+[10:59:45] [Server thread/INFO]: sp33chp0s3r lost connection: Disconnected
+[10:59:45] [Server thread/INFO]: sp33chp0s3r left the game
+[10:59:54] [Server Shutdown Thread/INFO]: Stopping server
+[10:59:54] [Server Shutdown Thread/INFO]: Saving players
+[10:59:54] [Server Shutdown Thread/INFO]: Saving worlds
