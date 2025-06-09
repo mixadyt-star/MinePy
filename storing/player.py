@@ -22,5 +22,5 @@ class Player:
         self.chat_colors = None
         self.displayed_skin_parts = None
         self.main_hand = None
-        self.position = (0, config.SEA_LEVEL + 2, 0)
+        self.position = config.SPAWN_POSITION
         self.rotation = (0, 0)

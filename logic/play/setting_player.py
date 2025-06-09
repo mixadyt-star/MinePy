@@ -26,14 +26,14 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"JoinGame: {join_game_packet}", 2)
     writer.write(join_game_packet)
-    
+    await writer.drain()
 
     difficulty_setting = await ServerDifficulty.create(
         config.DIFFICULTY,
     )
     log(f"ServerDifficulty: {difficulty_setting}", 2)
     writer.write(difficulty_setting)
-    
+    await writer.drain()
 
     flags = 0
     if (player.invulnerable):
@@ -51,14 +51,14 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"PlayerAbilities: {player_abilities_setting}", 2)
     writer.write(player_abilities_setting)
-    
+    await writer.drain()
 
     held_item_setting = await HeldItemChange.create(
         player.slot,
     )
     log(f"HeldItemChange: {held_item_setting}", 2)
     writer.write(held_item_setting)
-    
+    await writer.drain()
 
     entity_status_setting = await EntityStatus.create(
         player.eid,
@@ -66,6 +66,7 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"EntityStatus: {entity_status_setting}", 2)
     writer.write(entity_status_setting)
+    await writer.drain()
     
     recipies_setting = await UnlockRecepies.create(
         0,
@@ -78,6 +79,7 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"UnlockRecepies: {recipies_setting}", 2)
     writer.write(recipies_setting)
+    await writer.drain()
 
     player_list_setting = await PlayerListAdd.create(
         1,
@@ -94,7 +96,7 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"PlayerListAdd: {player_list_setting}", 2)
     writer.write(player_list_setting)
-    
+    await writer.drain()
 
     time_setting = await TimeUpdate.create(
         cache.world_ticks,
@@ -102,6 +104,7 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"TimeUpdate: {time_setting}", 2)
     writer.write(time_setting)
+    await writer.drain()
     
     x, y, z = player.position
     yaw, pitch = player.rotation
@@ -117,11 +120,12 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"PlayerPosAndView: {pos_and_view_setting}", 2)
     writer.write(pos_and_view_setting)
+    await writer.drain()
 
     spawn_position_setting = await SpawnPosition.create(
-        (x, y, z),
+        config.SPAWN_POSITION,
     )
     log(f"SpawnPosition: {spawn_position_setting}", 2)
     writer.write(spawn_position_setting)
-    
+    await writer.drain()
     

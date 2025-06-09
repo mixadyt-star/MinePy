@@ -10,8 +10,8 @@ from ..world import *
 
 async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     chunk = await Chunk.generate(0, 0)
-    for x in range(-16, 0):
-        for z in range(-16, 0):
+    for x in range(-4, 5):
+        for z in range(-4, 5):
             chunk.x = x
             chunk.z = z
             chunk_packet = await ChunkData.create(

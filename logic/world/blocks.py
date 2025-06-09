@@ -9,7 +9,7 @@ blocks = json.load(open(file_path))
 bits_per_block = 0
 for identifier, block in blocks.items():
     bits_per_block += len(block) - 1
-bits_per_block = math.ceil(math.log2(bits_per_block))
+bits_per_block = 13 # math.ceil(math.log2(bits_per_block))
 
 class Block:
     def __init__(self, id: int, data: int, light: int, sky_light: int):

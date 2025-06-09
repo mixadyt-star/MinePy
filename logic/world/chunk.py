@@ -114,10 +114,12 @@ class Chunk:
         
         chunk_section_mask = 0
         data = b''
+        is_last_empty = False
         for i, chunk_section in enumerate(chunk.chunk_sections):
-            if (not chunk_section.is_empty):
+            if (not chunk_section.is_empty or not is_last_empty):
                 chunk_section_mask |= 1 << i
                 data += await ChunkSection.pack(chunk_section)
+            is_last_empty = chunk_section.is_empty
 
         packed += await VarInt.encode(chunk_section_mask)
 

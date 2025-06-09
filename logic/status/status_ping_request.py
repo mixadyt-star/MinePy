@@ -16,3 +16,4 @@ async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, r
     )
     log(f"StatusPingResponse: {response}")
     writer.write(response)
+    await writer.drain()
