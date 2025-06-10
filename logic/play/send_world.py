@@ -9,13 +9,10 @@ from ...storing import *
 from ..world import *
 
 async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
-    chunk = await Chunk.generate(0, 0)
-    for x in range(-4, 5):
-        for z in range(-4, 5):
-            chunk.x = x
-            chunk.z = z
+    for x in range(-8, 9):
+        for z in range(-8, 9):
             chunk_packet = await ChunkData.create(
-                await Chunk.pack(chunk),
+                await World.get_packed_chunk(x, z)
             )
             log(f"Chunk data x={x} z={z} sent")
             writer.write(chunk_packet)

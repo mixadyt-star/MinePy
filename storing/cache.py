@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Any
 import asyncio
 import pickle
 import os
@@ -27,9 +27,8 @@ class Cache:
         self.players: Dict[str, Player] = {}
 
 def load() -> Cache:
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(os.path.dirname(current_dir), "cache.minepy")
-    return pickle.load(open(file_path, "rb")) if os.path.exists(file_path) else Cache()
+    loaded = load_from_bytes("data\\cache.minepy")
+    return loaded if (loaded is not None) else Cache()
 
 def store(cache: Cache):
     cache.online = 0
@@ -39,6 +38,36 @@ def store(cache: Cache):
     for _, player in cache.players.items():
         player.online = False
     
+    store_to_bytes("data\\cache.minepy", cache)
+
+def load_from_bytes(path: str) -> Any | None:
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(os.path.dirname(current_dir), "cache.minepy")
-    pickle.dump(cache, open(file_path, "wb"), pickle.HIGHEST_PROTOCOL)
+    file_path = os.path.join(os.path.dirname(current_dir), path)
+    return pickle.load(open(file_path, "rb")) if os.path.exists(file_path) else None
+
+def store_to_bytes(path: str, obj: Any):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(os.path.dirname(current_dir), os.path.dirname(path))
+    file_path = os.path.join(os.path.dirname(current_dir), path)
+    os.makedirs(data_path, exist_ok=True)
+    
+    pickle.dump(obj, open(file_path, "wb"), pickle.HIGHEST_PROTOCOL)
+
+def load_bytes(path: str) -> bytes | None:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(os.path.dirname(current_dir), path)
+    return open(file_path, "rb").read() if os.path.exists(file_path) else None
+
+def store_bytes(path: str, data: bytes):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(os.path.dirname(current_dir), os.path.dirname(path))
+    file_path = os.path.join(os.path.dirname(current_dir), path)
+    os.makedirs(data_path, exist_ok=True)
+    
+    open(file_path, "wb").write(data)
+
+def file_exists(path: str) -> bool:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(os.path.dirname(current_dir), path)
+    
+    return os.path.exists(file_path)

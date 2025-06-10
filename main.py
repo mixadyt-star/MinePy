@@ -5,10 +5,14 @@ set_verbosity_level(config.VERBOSITY_LEVEL)
 import asyncio
 
 from .logic import ticker, keep_aliver, logic
-from .storing import load, store
 from .networking import sock
+from .logic.world import *
+from .storing import *
 
 async def _main():
+    if (not await World.is_world_generated()):
+        await World.generate()
+        
     await asyncio.gather(
         logic.ticker.run(),
         logic.keep_aliver.run(),
