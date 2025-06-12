@@ -61,7 +61,6 @@ async def new_session(reader: asyncio.StreamReader, writer: asyncio.StreamWriter
                 if (id == 0x0):
                     await login_start.process(data, writer, cache, remote)
                     await setting_player.process(writer, cache, remote)
-                    await send_world.process(writer, cache, remote)
                 elif (id == 0x1):
                     raise NotImplemented("Login encryption not implemented")
                 
@@ -70,8 +69,12 @@ async def new_session(reader: asyncio.StreamReader, writer: asyncio.StreamWriter
                     await teleport_confirm.process(data, writer, cache, remote)
                 elif (id == 0x4):
                     await client_settings.process(data, writer, cache, remote)
+                    await send_world.process(writer, cache, remote)
 
         except PlayerAlreadyOnline:
+            break
+
+        except ServerIsFull:
             break
 
         except Exception as e:
@@ -79,6 +82,7 @@ async def new_session(reader: asyncio.StreamReader, writer: asyncio.StreamWriter
             if (remote.username):
                 cache.players[remote.username].online = False
                 cache.keep_alive_list.pop(StreamWriter(writer))
+                cache.online -= 1
                 log(f"{remote.username} has left the game")
             break
 

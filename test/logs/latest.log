@@ -1,22 +1,55 @@
-[10:53:53] [Server thread/INFO]: Loading properties
-[10:53:53] [Server thread/INFO]: Default game type: SURVIVAL
-[10:53:53] [Server thread/INFO]: Generating keypair
-[10:53:53] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:666
-[10:53:53] [Server thread/INFO]: Using default channel type
-[10:53:54] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
-[10:53:54] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
-[10:53:54] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
-[10:53:54] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
-[10:53:54] [Server thread/INFO]: Preparing level "world"
-[10:53:55] [Server thread/INFO]: Loaded 488 advancements
-[10:53:55] [Server thread/INFO]: Preparing start region for level 0
-[10:53:56] [Server thread/INFO]: Preparing spawn area: 7%
-[10:53:57] [Server thread/INFO]: Preparing spawn area: 56%
-[10:53:57] [Server thread/INFO]: Done (3,432s)! For help, type "help" or "?"
-[10:59:39] [Server thread/INFO]: sp33chp0s3r[/127.0.0.1:56610] logged in with entity id 351 at (186.5, 70.0, 259.5)
-[10:59:39] [Server thread/INFO]: sp33chp0s3r joined the game
-[10:59:45] [Server thread/INFO]: sp33chp0s3r lost connection: Disconnected
-[10:59:45] [Server thread/INFO]: sp33chp0s3r left the game
-[10:59:54] [Server Shutdown Thread/INFO]: Stopping server
-[10:59:54] [Server Shutdown Thread/INFO]: Saving players
-[10:59:54] [Server Shutdown Thread/INFO]: Saving worlds
+[11:20:44] [Server thread/INFO]: Loading properties
+[11:20:44] [Server thread/INFO]: Default game type: SURVIVAL
+[11:20:44] [Server thread/INFO]: Generating keypair
+[11:20:45] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:666
+[11:20:45] [Server thread/INFO]: Using default channel type
+[11:20:45] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[11:20:45] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[11:20:45] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[11:20:45] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[11:20:45] [Server thread/INFO]: Preparing level "world"
+[11:20:45] [Server thread/INFO]: Loaded 488 advancements
+[11:20:45] [Server thread/INFO]: Preparing start region for level 0
+[11:20:46] [Server thread/INFO]: Preparing spawn area: 54%
+[11:20:47] [Server thread/INFO]: Done (1,822s)! For help, type "help" or "?"
+[11:42:37] [Server thread/INFO]: Disconnecting /127.0.0.1:60935: Took too long to log in
+[11:42:37] [Server thread/INFO]: /127.0.0.1:60935 lost connection: Timed out
+[11:43:50] [Server thread/INFO]: sp33chp0s3r2[/127.0.0.1:60944] logged in with entity id 354 at (168.5, 69.0, 252.5)
+[11:43:50] [Server thread/INFO]: sp33chp0s3r2 joined the game
+[11:44:43] [Server thread/INFO]: Opped sp33chp0s3r2
+[11:45:00] [Server thread/INFO]: [sp33chp0s3r2: Set own game mode to Creative Mode]
+[11:47:51] [Server thread/INFO]: sp33chp0s3r2 lost connection: You logged in from another location
+[11:47:51] [Server thread/INFO]: sp33chp0s3r2 left the game
+[11:47:51] [Server thread/WARN]: handleDisconnection() called twice
+[11:47:51] [Server thread/INFO]: com.mojang.authlib.GameProfile@11e8d301[id=d0719462-5155-3fae-b231-0325375e6281,name=sp33chp0s3r2,properties={},legacy=false] (/127.0.0.1:60986) lost connection: Disconnected
+[11:48:12] [Server thread/INFO]: sp33chp0s3r2[/127.0.0.1:60989] logged in with entity id 4062 at (175.03524560082792, 83.24313565259423, 248.80118784045771)
+[11:48:12] [Server thread/INFO]: sp33chp0s3r2 joined the game
+[11:48:34] [Server thread/INFO]: sp33chp0s3r_bot[/127.0.0.1:60992] logged in with entity id 4332 at (171.5, 67.0, 256.5)
+[11:48:34] [Server thread/INFO]: sp33chp0s3r_bot joined the game
+[11:48:34] [Server thread/INFO]: sp33chp0s3r_bot lost connection: Disconnected
+[11:48:34] [Server thread/INFO]: sp33chp0s3r_bot left the game
+[12:13:25] [Server thread/INFO]: sp33chp0s3r_bot[/127.0.0.1:61440] logged in with entity id 38669 at (171.5, 67.0, 256.5)
+[12:13:25] [Server thread/INFO]: sp33chp0s3r_bot joined the game
+[12:13:25] [Server thread/INFO]: sp33chp0s3r_bot lost connection: Internal Exception: java.net.SocketException: Connection reset
+[12:13:25] [Server thread/INFO]: sp33chp0s3r_bot left the game
+[12:14:24] [Server thread/INFO]: sp33chp0s3r_bot[/127.0.0.1:61448] logged in with entity id 40727 at (171.5, 67.0, 256.5)
+[12:14:24] [Server thread/INFO]: sp33chp0s3r_bot joined the game
+[12:14:24] [Server thread/INFO]: sp33chp0s3r_bot lost connection: Disconnected
+[12:14:24] [Server thread/INFO]: sp33chp0s3r_bot left the game
+[12:15:28] [Server thread/INFO]: sp33chp0s3r_bot[/127.0.0.1:61454] logged in with entity id 42396 at (171.5, 67.0, 256.5)
+[12:15:28] [Server thread/INFO]: sp33chp0s3r_bot joined the game
+[12:15:28] [Server thread/INFO]: sp33chp0s3r_bot lost connection: Disconnected
+[12:15:28] [Server thread/INFO]: sp33chp0s3r_bot left the game
+[12:18:11] [Server thread/INFO]: sp33chp0s3r2 has made the advancement [Take Aim]
+[12:20:54] [Server thread/INFO]: [sp33chp0s3r2: Set the time to 1000]
+[12:28:44] [Server thread/INFO]: sp33chp0s3r2 has made the advancement [Spooky Scary Skeleton]
+[12:29:19] [Server thread/INFO]: [sp33chp0s3r2: Set own game mode to Survival Mode]
+[12:29:30] [Server thread/INFO]: sp33chp0s3r2 has made the advancement [Withering Heights]
+[12:30:34] [Server thread/INFO]: [sp33chp0s3r2: Set the time to 1000]
+[12:30:50] [Server thread/INFO]: sp33chp0s3r2 was slain by Wither
+[12:30:57] [Server thread/INFO]: [sp33chp0s3r2: Set own game mode to Creative Mode]
+[12:31:01] [Server thread/INFO]: sp33chp0s3r2 has made the advancement [Cover Me With Diamonds]
+[12:32:03] [Server thread/INFO]: [sp33chp0s3r2: Set own game mode to Survival Mode]
+[12:33:02] [Server thread/INFO]: sp33chp0s3r2 fell from a high place
+[12:33:05] [Server thread/INFO]: sp33chp0s3r2 lost connection: Disconnected
+[12:33:05] [Server thread/INFO]: sp33chp0s3r2 left the game

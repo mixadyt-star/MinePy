@@ -24,16 +24,25 @@ async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, r
         response = await Disconnect.create(
             '"Player already online"',
         )
-        log(f"Disconnect: {response}")
+        log(f"Disconnect: {response}", 2)
         writer.write(response)
         await writer.drain()
         raise PlayerAlreadyOnline()
+    
+    if (cache.online >= config.MAX_PLAYERS_COUNT):
+        response = await Disconnect.create(
+            '"Server is full",'
+        )
+        log(f"Disconnect: {response}", 2)
+        writer.write(response)
+        await writer.drain()
+        raise ServerIsFull()
     
     response = await EnableCompression.create(
         config.COMPRESSION_THRESHOLD,
     )
     remote.compression_enabled = True
-    log(f"EnableCompression: {response}")
+    log(f"EnableCompression: {response}", 2)
     writer.write(response)
     await writer.drain()
 
@@ -41,11 +50,12 @@ async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, r
         cache.players[remote.username].uuid,
         remote.username,
     )
-    log(f"LoginSuccess: {response}")
+    log(f"LoginSuccess: {response}", 2)
     cache.remote[remote] = PLAY
     cache.keep_alive_list[StreamWriter(writer)] = time.time()
     player: Player = cache.players[remote.username]
     player.online = True
+    cache.online += 1
     log(f"{player.username} joined the game")
     writer.write(response)
     await writer.drain()

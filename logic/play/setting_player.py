@@ -81,18 +81,23 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     writer.write(recipies_setting)
     await writer.drain()
 
+    player_list = []
+    for username, other_player in cache.players.items():
+        if (other_player.online):
+            player_list.append((
+                other_player.uuid,
+                other_player.username,
+                0,
+                None,
+                other_player.gamemode,
+                0,
+                bool(other_player.display_name),
+                other_player.display_name,
+            ))
+
     player_list_setting = await PlayerListAdd.create(
-        1,
-        [(
-            player.uuid,
-            player.username,
-            0,
-            None,
-            player.gamemode,
-            0,
-            bool(player.display_name),
-            player.display_name,
-        )]
+        len(player_list),
+        player_list,
     )
     log(f"PlayerListAdd: {player_list_setting}", 2)
     writer.write(player_list_setting)
@@ -104,28 +109,5 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     )
     log(f"TimeUpdate: {time_setting}", 2)
     writer.write(time_setting)
-    await writer.drain()
-    
-    x, y, z = player.position
-    yaw, pitch = player.rotation
-
-    pos_and_view_setting = await PlayerPosAndLook.create(
-        x,
-        y,
-        z,
-        yaw,
-        pitch,
-        0,
-        await ids.generate_tp_id(cache),
-    )
-    log(f"PlayerPosAndView: {pos_and_view_setting}", 2)
-    writer.write(pos_and_view_setting)
-    await writer.drain()
-
-    spawn_position_setting = await SpawnPosition.create(
-        config.SPAWN_POSITION,
-    )
-    log(f"SpawnPosition: {spawn_position_setting}", 2)
-    writer.write(spawn_position_setting)
     await writer.drain()
     

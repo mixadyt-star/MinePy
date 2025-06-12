@@ -14,8 +14,8 @@ async def _main():
         await World.generate()
         
     await asyncio.gather(
-        logic.ticker.run(),
-        logic.keep_aliver.run(),
+        ticker.run(),
+        keep_aliver.run(),
         sock.run(config.SERVER_ADDRESS, config.SERVER_PORT),
     )
     log("Server is now running")
