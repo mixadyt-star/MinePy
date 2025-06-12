@@ -1,6 +1,8 @@
 import asyncio
 
-class VarInt:
+from . import CommonType
+
+class VarInt(CommonType):
     @staticmethod      
     async def encode(data: int) -> bytes:
         encoded = b''
@@ -16,7 +18,7 @@ class VarInt:
         return encoded
     
     @staticmethod
-    async def decode(data: bytearray) -> int:
+    async def _decode(data: bytearray) -> int:
         shift = 0
         decoded = 0
 
@@ -30,12 +32,12 @@ class VarInt:
         return decoded
     
     @staticmethod
-    async def decode_stream(data: asyncio.StreamReader) -> int:
+    async def decode(reader: asyncio.StreamReader) -> int:
         shift = 0
         decoded = 0
 
         while (True):
-            i = int.from_bytes(await data.read(1))
+            i = int.from_bytes(await reader.read(1))
             decoded |= (i & 0x7f) << shift
             shift += 7
             if (not (i & 0x80)):

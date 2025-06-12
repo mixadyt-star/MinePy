@@ -1,4 +1,7 @@
+import asyncio
+
 from ....common_types import *
+from ..packet import Packet
 
 class _TeleportConfirm:
     def __init__(self, tp_id: int):
@@ -6,7 +9,9 @@ class _TeleportConfirm:
 
 class TeleportConfirm:
     @staticmethod
-    async def create(data: bytearray) -> _TeleportConfirm:
-        return _TeleportConfirm(
-            tp_id=await VarInt.decode(data),
+    async def create(reader: asyncio.StreamReader) -> _TeleportConfirm:
+        return await Packet.create(
+            reader=reader,
+            data_class=_TeleportConfirm,
+            tp_id=VarInt,
         )

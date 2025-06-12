@@ -1,14 +1,16 @@
-class Long:
+import asyncio
+
+from . import CommonType, multi_pop
+
+class Long(CommonType):
     @staticmethod
     async def encode(data: int) -> bytes:
         return (data & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "big")
     
-    @staticmethod
-    async def decode(data: bytearray) -> int:
-        decoded = b""
-        for i in range(8):
-            decoded += data.pop(0).to_bytes(1, "big")
-            
-        decoded = int.from_bytes(decoded, signed=True)
+    @staticmethod 
+    async def _decode(data: bytearray) -> int:
+        return int.from_bytes(multi_pop(data, 8), signed=True)
 
-        return decoded
+    @staticmethod
+    async def decode(reader: asyncio.StreamReader) -> int:
+        return await Long._decode(bytearray(await reader.read(8)))

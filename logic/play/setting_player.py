@@ -110,4 +110,29 @@ async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     log(f"TimeUpdate: {time_setting}", 2)
     writer.write(time_setting)
     await writer.drain()
+
+    x, y, z = player.position
+    yaw, pitch = player.rotation
+
+    pos_and_view_setting = await PlayerPosAndLook.create(
+        x,
+        y,
+        z,
+        yaw,
+        pitch,
+        0,
+        await ids.generate_tp_id(cache),
+    )
+    
+    log(f"PlayerPosAndView: {pos_and_view_setting}", 2)
+    writer.write(pos_and_view_setting)
+    await writer.drain()
+
+    spawn_position_setting = await SpawnPosition.create(
+        config.SPAWN_POSITION,
+    )
+
+    log(f"SpawnPosition: {spawn_position_setting}", 2)
+    writer.write(spawn_position_setting)
+    await writer.drain()
     

@@ -12,8 +12,8 @@ from ...custom_exceptions import *
 from ...storing import *
 from ...static import *
 
-async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
-    client_packet = await LoginStart.create(data)
+async def process(buffer: asyncio.StreamReader, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
+    client_packet = await LoginStart.create(buffer)
     show_self(client_packet, 2)
     remote.username = client_packet.username
     cache.players[remote.username] = cache.players.get(

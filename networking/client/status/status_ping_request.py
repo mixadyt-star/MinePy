@@ -1,4 +1,7 @@
+import asyncio
+
 from ....common_types import *
+from ..packet import Packet
 
 class _StatusPingRequest:
     def __init__(self, payload: int):
@@ -6,7 +9,9 @@ class _StatusPingRequest:
 
 class StatusPingRequest:
     @staticmethod
-    async def create(data: bytearray) -> _StatusPingRequest:
-        return _StatusPingRequest(
-            payload=await Long.decode(data),
+    async def create(reader: asyncio.StreamReader) -> _StatusPingRequest:
+        return await Packet.create(
+            reader=reader,
+            data_class=_StatusPingRequest,
+            payload=Long,
         )

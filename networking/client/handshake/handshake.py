@@ -1,7 +1,15 @@
+import asyncio
+
 from ....common_types import *
+from ..packet import Packet
 
 class _Handshake:
-    def __init__(self, version: int, address: str, port: int, intent: int):
+    def __init__(self,
+                 version: int,
+                 address: str,
+                 port: int,
+                 intent: int):
+        
         self.version = version
         self.address = address,
         self.port = port
@@ -9,10 +17,12 @@ class _Handshake:
 
 class Handshake:
     @staticmethod
-    async def create(data: bytearray) -> _Handshake:
-        return _Handshake(
-            version=await VarInt.decode(data),
-            address=await String.decode(data),
-            port=await UnsignedShort.decode(data),
-            intent=await VarInt.decode(data),
+    async def create(reader: asyncio.StreamReader) -> _Handshake:
+        return await Packet.create(
+            reader=reader,
+            data_class=_Handshake,
+            version=VarInt,
+            address=String,
+            port=UnsignedShort,
+            intent=VarInt,
         )

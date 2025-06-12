@@ -1,10 +1,17 @@
+import asyncio
+
+from . import CommonType
 from .byte import Byte
 
-class Angle:
+class Angle(CommonType):
     @staticmethod
     async def encode(data: int) -> bytes:
         return await Byte.encode(data)
     
     @staticmethod
-    async def decode(data: bytearray) -> int:
-        return await Byte.decode(data)
+    async def _decode(data: bytearray) -> int:
+        return await Byte._decode(data)
+    
+    @staticmethod
+    async def decode(reader: asyncio.StreamReader) -> int:
+        return await Angle._decode(bytearray(await reader.read(1)))

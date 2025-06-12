@@ -8,7 +8,7 @@ from ...networking.server import *
 from ...storing import *
 from ...static import *
 
-async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
+async def process(writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
     response = await StatusResponse.create(
         config.VERSION_NAME,
         config.VERSION_PROTOCOL,

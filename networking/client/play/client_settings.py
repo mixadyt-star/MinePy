@@ -1,4 +1,7 @@
+import asyncio
+
 from ....common_types import *
+from ..packet import Packet
 
 class _ClientSettings:
     def __init__(self,
@@ -8,6 +11,7 @@ class _ClientSettings:
                  chat_colors: bool,
                  displayed_skin_parts: int,
                  main_hand: int):
+        
         self.locale = locale
         self.view_distance = view_distance
         self.chat_mode = chat_mode
@@ -17,12 +21,14 @@ class _ClientSettings:
 
 class ClientSettings:
     @staticmethod
-    async def create(data: bytearray) -> _ClientSettings:
-        return _ClientSettings(
-            locale=await String.decode(data),
-            view_distance=await Byte.decode(data),
-            chat_mode=await VarInt.decode(data),
-            chat_colors=await Boolean.decode(data),
-            displayed_skin_parts=await UnsignedByte.decode(data),
-            main_hand=await VarInt.decode(data),
+    async def create(reader: asyncio.StreamReader) -> _ClientSettings:
+        return await Packet.create(
+            reader=reader,
+            data_class=_ClientSettings,
+            locale=String,
+            view_distance=Byte,
+            chat_mode=VarInt,
+            chat_colors=Boolean,
+            displayed_skin_parts=UnsignedByte,
+            main_hand=VarInt,
         )

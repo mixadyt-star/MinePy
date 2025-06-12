@@ -7,8 +7,8 @@ import asyncio
 from ...networking.client import *
 from ...storing import *
 
-async def process(data: bytearray, writer: asyncio.StreamWriter, cache: Cache, remote: Remote):
-    client_packet = await ClientSettings.create(data)
+async def process(buffer: asyncio.StreamReader, cache: Cache, remote: Remote):
+    client_packet = await ClientSettings.create(buffer)
     show_self(client_packet, 2)
 
     player: Player = cache.players[remote.username]

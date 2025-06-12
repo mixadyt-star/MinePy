@@ -1,6 +1,9 @@
+import asyncio
+
+from . import CommonType, multi_pop
 from .varint import VarInt
 
-class String:
+class String(CommonType):
     @staticmethod
     async def encode(data: str) -> bytes:
         temp = await VarInt.encode(len(data))
@@ -9,12 +12,11 @@ class String:
         return encoded
 
     @staticmethod
-    async def decode(data: bytearray) -> str:
-        length = await VarInt.decode(data)
-        decoded = b''
-        for i in range(length):
-            decoded += data.pop(0).to_bytes(1, "big")
+    async def _decode(data: bytearray) -> str:
+        length = await VarInt._decode(data)
 
-        decoded = decoded.decode()
-
-        return decoded
+        return multi_pop(data, length).decode()
+    
+    @staticmethod
+    async def decode(reader: asyncio.StreamReader) -> str:
+        return (await reader.read(await VarInt.decode(reader))).decode()
